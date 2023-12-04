@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*:focus-visible {
+	outline: none;
+	border-color: #0c3d71;
+}
+
+.true {
+	background-color: red;
+}
+.c-btn {
+	@apply rounded-xl flex items-center justify-center border-2 text-white hover:scale-110 transition-transform duration-300;
+}
+
+.c-btn-modal {
+	@apply flex items-center justify-center p-4 bg-sidebarBg hover:bg-secondaryBg transition-[border_background-color] duration-300;
+}
+.c-btn-modal-clear {
+	@apply hover:border-red-500 border-t-[3px] border-primaryBg;
+}
+.c-btn-modal-add {
+	@apply hover:border-green-500 border-t-[3px] border-primaryBg;
+}
+.c-btn-modal-close {
+	@apply hover:border-red-500 border-[2px] border-secondaryBg rounded-xl;
+}
+.c-btn-modal-open {
+	@apply hover:border-green-500 border-[2px] border-secondaryBg rounded-xl;
+}
