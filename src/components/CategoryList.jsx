@@ -2,7 +2,7 @@ import ButtonAddCategory from './buttons/ButtonAddCategory'
 import ButtonCategory from './buttons/ButtonCategory'
 export default function CategoryList({ categories, increaseSidebar, handleClick, handleShowModal }) {
 	return (
-		<div className={`py-2 flex flex-col gap-2 h-full`}>
+		<div className={`py-4 lg:py-2 flex flex-wrap lg:flex-col gap-2 h-full`}>
 			<ButtonAddCategory categories={categories} increaseSidebar={increaseSidebar} handleShowModal={handleShowModal}>
 				<svg width='20' height='20' viewBox='0 0 448 512' xmlns='http://www.w3.org/2000/svg'>
 					<path

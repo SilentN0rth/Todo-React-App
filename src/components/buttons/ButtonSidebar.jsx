@@ -1,7 +1,8 @@
-export default function ButtonSidebar({ children, resizeSidebar, deleteAll }) {
+export default function ButtonSidebar({ children, resizeSidebar, deleteAll, setShowDelModal, showDelModal }) {
 	const checkClick = () => {
 		resizeSidebar && resizeSidebar()
 		deleteAll && deleteAll()
+		setShowDelModal && setShowDelModal(!showDelModal)
 	}
 
 	return (

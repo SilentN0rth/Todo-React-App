@@ -1,8 +1,19 @@
-export default function ButtonModal({ children, closeModal, clearInputs, addItem, handleReject, handleAccept, item }) {
-	console.log(item)
+export default function ButtonModal({
+	children,
+	closeModal,
+	clearInputs,
+	addItem,
+	handleReject,
+	handleAccept,
+	item,
+	setShowDelModal,
+	handleDeleteAll,
+}) {
 	let btnClasses = ''
-	if (closeModal) {
+	if (closeModal || setShowDelModal) {
 		btnClasses = 'c-btn-modal-close'
+	} else if (handleDeleteAll) {
+		btnClasses = 'c-btn-modal-open'
 	} else if (clearInputs) {
 		btnClasses = 'c-btn-modal-clear'
 	} else if (addItem) {
@@ -14,6 +25,8 @@ export default function ButtonModal({ children, closeModal, clearInputs, addItem
 		addItem && addItem()
 		handleReject && handleReject()
 		handleAccept && handleAccept(item)
+		setShowDelModal && setShowDelModal(false)
+		handleDeleteAll && handleDeleteAll()
 	}
 
 	return (

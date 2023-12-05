@@ -2,7 +2,7 @@ export default function ButtonAddTodo({ handleShowModal }) {
 	return (
 		<button
 			onClick={() => handleShowModal('todo')}
-			className='flex items-center justify-center border-2 rounded-xl min-h-[80px] w-full'>
+			className=' bg-secondaryBg/80 flex items-center justify-center border-2 rounded-xl min-h-[80px] w-full'>
 			<svg
 				className='w-[22px] h-[22px] md:w-[30px] md:h-[30px]'
 				viewBox='0 0 448 512'

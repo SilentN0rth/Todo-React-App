@@ -5,7 +5,7 @@ import ModalCategoryList from './CategoryList'
 import ModalInput from './ModalInput'
 import { colors } from '../data/categories'
 import { useState } from 'react'
-export default function Modal({ handleShowModal, todoItems, setTodoItems, categories, setCategories, setError, type }) {
+export default function Modal({ handleShowModal, setTodoItems, categories, setCategories, setError, type }) {
 	const maxInputLength = type == 'todo' ? 100 : 20
 	const defaultValue = 'default'
 	const [text, setText] = useState('')
@@ -28,7 +28,12 @@ export default function Modal({ handleShowModal, todoItems, setTodoItems, catego
 				newItem =
 					type === 'category'
 						? { id: crypto.randomUUID(), name: text, color }
-						: { id: crypto.randomUUID(), text: text, category: todoCategory, date: todoDate === defaultValue && true }
+						: {
+								id: crypto.randomUUID(),
+								text: text,
+								category: todoCategory,
+								date: todoDate == defaultValue ? 'true' : todoDate,
+						  }
 
 				if (type === 'category') {
 					setCategories(categories => [...categories, newItem])
@@ -62,8 +67,8 @@ export default function Modal({ handleShowModal, todoItems, setTodoItems, catego
 				</div>
 				<div className='p-5'>
 					<div className={`${type == 'todo' ? 'hidden' : 'lg:hidden'}`}>
-						<p className='px-5 text-2xl'>Default categories:</p>
-						<ModalCategoryList categories={categories} isModal={true}>
+						<p className='text-2xl'>Your categories:</p>
+						<ModalCategoryList categories={categories}>
 							<ButtonCategory />
 						</ModalCategoryList>
 					</div>

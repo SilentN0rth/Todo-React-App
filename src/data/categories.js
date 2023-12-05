@@ -27,6 +27,24 @@ export const primaryCategories = [
 
 export const colors = [
 	{
+		name: 'red',
+	},
+	{
+		name: 'green',
+	},
+	{
+		name: 'yellow',
+	},
+	{
+		name: 'orange',
+	},
+	{
+		name: 'purple',
+	},
+	{
+		name: 'blue',
+	},
+	{
 		name: 'lime',
 	},
 	{

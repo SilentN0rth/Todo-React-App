@@ -13,7 +13,7 @@ export default function App() {
 	const [todoItems, setTodoItems] = useState(primaryTodoItems)
 	const [increaseSidebar, setIncreaseSidebar] = useState(false)
 	const [showModal, setShowModal] = useState(false)
-	const [showDelModal, setShowDelModal] = useState(true)
+	const [showDelModal, setShowDelModal] = useState(false)
 	const [error, setError] = useState('')
 	const [modalType, setModalType] = useState('')
 
@@ -23,15 +23,20 @@ export default function App() {
 	}
 
 	// Reject
-	const handleReject = () => {
-		setShowDelModal(false)
-	}
-	// Accept
+	// const handleReject = () => {
+	// 	setShowDelModal(false)
+	// }
+	// // Accept
+	// const handleDeleteItem = id => {
+	// 	setTodoItems(items => items.filter(item => item.id != id.id))
+	// }
+
 	const handleDeleteItem = id => {
-		setTodoItems(items => items.filter(item => item.id != id.id))
+		setTodoItems(items => items.filter(item => item.id !== id.id))
 	}
 
 	const handleDeleteAll = () => {
+		setShowDelModal(!showDelModal)
 		setCategories([])
 		setTodoItems([])
 		setIncreaseSidebar(false)
@@ -48,17 +53,8 @@ export default function App() {
 
 	return (
 		<>
-			{/* {error && <ModalError error={error} setError={setError} />} */}
+			{error && <ModalError error={error} setError={setError} />}
 			{showModal && (
-				// <Modal
-				// 	handleShowModal={handleShowModal}
-				// 	todoItems={todoItems}
-				// 	setTodoItems={setTodoItems}
-				// 	categories={categories}
-				// 	setCategories={setCategories}
-				// 	setError={setError}
-				// 	type={modalType}
-				// />
 				<Modal
 					handleShowModal={handleShowModal}
 					setTodoItems={setTodoItems}
@@ -68,19 +64,12 @@ export default function App() {
 					type={modalType}
 				/>
 			)}
-			{/* <Modal
-				handleShowModal={handleShowModal}
-				todoItems={todoItems}
-				setTodoItems={setTodoItems}
-				categories={categories}
-				setCategories={setCategories}
-				setError={setError}
-				type={modalType}
-			/> */}
-			{/* ⇱ */}
+			{showDelModal && (
+				<ModalDelete handleDeleteAll={handleDeleteAll} setShowDelModal={setShowDelModal} showDelModal={showDelModal} />
+			)}
 			<div className='container '>
 				<div
-					className={`sticky top-10 m-5 lg:grid lg:grid-cols-[auto_1fr] bg-secondaryBg border-2 border-modalBg rounded-2xl `}>
+					className={`sticky top-10 sm:m-5 sm:min-h-[400px] lg:grid lg:grid-cols-[auto_1fr]  min-h-screen bg-secondaryBg border-2 border-modalBg rounded-2xl `}>
 					{/* col1 */}
 					<div
 						className={`p-3 sticky top-0 hidden lg:flex flex-col bg-sidebarBg ${
@@ -94,7 +83,7 @@ export default function App() {
 						/>
 						{categories.length ? (
 							<div className='flex flex-col justify-end gap-2'>
-								<ButtonSidebar deleteAll={handleDeleteAll}>
+								<ButtonSidebar setShowDelModal={setShowDelModal} showDelModal={showDelModal}>
 									<svg width='30' height='30' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'>
 										<path
 											fill='none'
@@ -135,7 +124,11 @@ export default function App() {
 						// handleAccept={handleDeleteItem}
 					/>
 					<div className='flex lg:hidden fixed left-2 bottom-2 flex-col gap-2'>
-						<ButtonAddCategory type='showCategories'>
+						<ButtonAddCategory
+							categories={categories}
+							increaseSidebar={increaseSidebar}
+							handleShowModal={handleShowModal}
+							isMobile={true}>
 							<svg width='25' height='25' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
 								<path
 									fill='currentColor'
