@@ -1,12 +1,16 @@
+import { useState } from 'react'
 import ButtonItem from './buttons/ButtonItem'
-import ModalDelete from './ModalDelete'
 export default function TodoItem({ children, item, categories, handleDeleteItem }) {
 	const currentDate = new Date()
 	const matchingCategory = categories.find(category => category?.name === item?.category)
+	const [gray, setGray] = useState(false)
 	return (
 		<>
 			<div
-				className={`grid grid-cols-1 grid-rows-1 rounded-xl text-white bg-${matchingCategory?.color}-500 border-${matchingCategory?.color}-400 border-[3px] p-5 mb-3 h-full cursor-pointer`}>
+				onClick={() => setGray(!gray)}
+				className={`grid grid-cols-1 grid-rows-1 rounded-xl text-white bg-${matchingCategory?.color}-500 border-${
+					matchingCategory?.color
+				}-400 ${gray ? ' grayscale' : ''} border-[3px] p-5 mb-3 h-full cursor-pointer`}>
 				<p className='max-w-prose break-keep break-words sm:text-lg'>{children}</p>
 
 				{item.date == 'true' ? (
@@ -69,7 +73,6 @@ export default function TodoItem({ children, item, categories, handleDeleteItem 
 							/>
 						</svg>
 					</ButtonItem>
-					{/* <ButtonItem setShowDelModal={!showDelModal}> */}
 				</div>
 			</div>
 		</>
