@@ -4,5 +4,6 @@ Technologies used:
 
 - React
 - Tailwind
+- Vite
 - HTML
 - CSS
